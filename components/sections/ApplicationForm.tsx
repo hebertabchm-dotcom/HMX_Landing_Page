@@ -32,6 +32,7 @@ export const ApplicationForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitErrorDetails, setSubmitErrorDetails] = useState<string | null>(null);
   const [formData, setFormData] = useState<ApplicationFormData>(INITIAL_FORM_DATA);
 
   const resetForm = () => {
@@ -59,6 +60,7 @@ export const ApplicationForm = () => {
     e.preventDefault();
     setIsLoading(true);
     setSubmitError(null);
+    setSubmitErrorDetails(null);
 
     const payload: ApplicationWebhookPayload = {
       ...formData,
@@ -72,7 +74,9 @@ export const ApplicationForm = () => {
       await submitApplicationToN8n(payload);
       resetForm();
       setIsSubmitted(true);
-    } catch {
+    } catch (error) {
+      const details = error instanceof Error ? error.message : String(error);
+      setSubmitErrorDetails(details);
       setSubmitError('Não foi possível enviar seus dados agora. Tente novamente ou envie pelo WhatsApp.');
     } finally {
       setIsLoading(false);
@@ -138,6 +142,16 @@ export const ApplicationForm = () => {
             {submitError && (
               <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-text-secondary">
                 <p>{submitError}</p>
+                {submitErrorDetails && (
+                  <details className="mt-3">
+                    <summary className="cursor-pointer select-none text-xs text-text-muted">
+                      Ver detalhes
+                    </summary>
+                    <pre className="mt-2 whitespace-pre-wrap break-words rounded-xl border border-white/10 bg-bg-secondary/40 p-3 text-[11px] leading-relaxed text-text-muted">
+                      {submitErrorDetails}
+                    </pre>
+                  </details>
+                )}
                 <div className="mt-3 flex justify-center">
                   <WhatsAppLink size="sm" label="Enviar pelo WhatsApp" message={whatsAppMessage} />
                 </div>

@@ -28,9 +28,18 @@ export async function submitApplicationToN8n(payload: ApplicationWebhookPayload)
   });
 
   if (!response.ok) {
+    const contentType = response.headers.get('content-type') ?? '';
+    if (contentType.includes('application/json')) {
+      const json = (await response.json().catch(() => null)) as
+        | { error?: string; message?: string; details?: string }
+        | null;
+      const details = json?.details || json?.message || json?.error;
+      throw new Error(
+        `application submit failed (${response.status}): ${details || response.statusText}`,
+      );
+    }
+
     const responseText = await response.text().catch(() => '');
-    throw new Error(
-      `application submit failed (${response.status}): ${responseText || response.statusText}`,
-    );
+    throw new Error(`application submit failed (${response.status}): ${responseText || response.statusText}`);
   }
 }
