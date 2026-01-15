@@ -63,7 +63,7 @@ export const Plans = () => {
                 className={`relative flex flex-col h-full ${
                   item.featured
                     ? 'border-accent-primary shadow-[0_0_20px_rgba(14,165,233,0.15)] bg-bg-secondary transform md:scale-105'
-                    : 'hover:border-white/20 bg-surface/50'
+                    : 'hover:border-white/20 bg-surface/[0.08]'
                 }`}
               >
                 {item.featured && (

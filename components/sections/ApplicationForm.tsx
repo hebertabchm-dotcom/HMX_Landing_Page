@@ -78,7 +78,7 @@ export const ApplicationForm = () => {
       >
         <Container className="max-w-2xl text-center">
           <Reveal width="100%">
-            <div className="bg-surface/30 p-6 sm:p-10 md:p-12 rounded-3xl border border-accent-primary/20 backdrop-blur-xl shadow-2xl">
+            <div className="bg-surface/[0.08] p-6 sm:p-10 md:p-12 rounded-3xl border border-accent-primary/20 backdrop-blur-xl shadow-2xl">
               <div className="inline-flex items-center justify-center w-20 h-20 bg-success/20 text-success rounded-full mb-6">
                 <Send size={40} className="ml-1" />
               </div>
@@ -117,7 +117,7 @@ export const ApplicationForm = () => {
         <Reveal width="100%" delay={0.2}>
           <form
             onSubmit={handleSubmit}
-            className="bg-surface/30 p-6 md:p-10 rounded-2xl border border-white/5 backdrop-blur-sm space-y-6"
+            className="bg-surface/[0.08] p-6 md:p-10 rounded-2xl border border-white/5 backdrop-blur-sm space-y-6"
           >
             {submitError && (
               <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-text-secondary">
@@ -197,19 +197,29 @@ export const ApplicationForm = () => {
               <select
                 id="revenue"
                 name="revenue"
-                className="flex h-12 w-full rounded-[var(--radius-sm)] border border-white/10 bg-surface/50 px-3 py-2 text-sm text-text-primary ring-offset-bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200"
+                className="flex h-12 w-full rounded-[var(--radius-sm)] border border-white/10 bg-bg-secondary/40 px-3 py-2 text-sm text-text-primary ring-offset-bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200"
                 required
                 value={formData.revenue}
                 onChange={handleChange}
               >
-                <option value="" disabled>
+                <option value="" disabled className="bg-bg-secondary text-text-primary">
                   Selecione uma opção
                 </option>
-                <option value="Ate 10k">Até R$ 10.000</option>
-                <option value="10k - 50k">de R$ 10.000 a R$ 50.000</option>
-                <option value="50k - 100k">de R$ 50.000 a R$ 100.000</option>
-                <option value="100k - 300k">de R$ 100.000 a R$ 300.000</option>
-                <option value="300k+">Acima de R$ 300.000</option>
+                <option value="Ate 10k" className="bg-bg-secondary text-text-primary">
+                  Até R$ 10.000
+                </option>
+                <option value="10k - 50k" className="bg-bg-secondary text-text-primary">
+                  de R$ 10.000 a R$ 50.000
+                </option>
+                <option value="50k - 100k" className="bg-bg-secondary text-text-primary">
+                  de R$ 50.000 a R$ 100.000
+                </option>
+                <option value="100k - 300k" className="bg-bg-secondary text-text-primary">
+                  de R$ 100.000 a R$ 300.000
+                </option>
+                <option value="300k+" className="bg-bg-secondary text-text-primary">
+                  Acima de R$ 300.000
+                </option>
               </select>
             </div>
 
@@ -240,4 +250,3 @@ export const ApplicationForm = () => {
     </Section>
   );
 };
-

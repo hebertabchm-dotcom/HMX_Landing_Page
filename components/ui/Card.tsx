@@ -12,7 +12,7 @@ export const Card = ({ children, className, gradient = false, ...props }: CardPr
     <motion.div
       whileHover={{ y: -5, scale: 1.01 }}
       className={cn(
-        "relative group bg-surface rounded-[var(--radius-md)] border border-white/5 p-6 md:p-8 overflow-hidden",
+        "relative group bg-surface/[0.06] rounded-[var(--radius-md)] border border-white/5 p-6 md:p-8 overflow-hidden",
         className
       )}
       {...props}
