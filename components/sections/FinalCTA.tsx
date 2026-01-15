@@ -3,7 +3,7 @@ import { Section } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
 import { MessageCircle } from 'lucide-react';
 import { Reveal } from '@/components/ui/Reveal';
-import { WhatsAppLink } from '@/components/ui/WhatsAppLink';
+// import { WhatsAppLink } from '@/components/ui/WhatsAppLink';
 
 export const FinalCTA = () => {
    const handleWhatsappClick = () => {
@@ -40,9 +40,9 @@ export const FinalCTA = () => {
             </Button>
         </Reveal>
 
-        <Reveal width="100%" delay={0.25} className="mt-6 flex justify-center">
+        {/* <Reveal width="100%" delay={0.25} className="mt-6 flex justify-center">
           <WhatsAppLink size="sm" />
-        </Reveal>
+        </Reveal> */}
       </Container>
     </Section>
   );

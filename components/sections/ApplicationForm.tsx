@@ -89,9 +89,9 @@ export const ApplicationForm = () => {
             Preencha o formulário abaixo para entendermos o seu momento. Se a sua empresa tiver o
             perfil que buscamos, entraremos em contato em até 24h.
           </p>
-          <div className="mt-6 flex justify-center">
+          {/* <div className="mt-6 flex justify-center">
             <WhatsAppLink size="sm" label="Falar no WhatsApp" />
-          </div>
+          </div> */}
         </Reveal>
 
         <Reveal width="100%" delay={0.2}>

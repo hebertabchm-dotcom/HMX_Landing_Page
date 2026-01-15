@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { ArrowUpRight } from 'lucide-react';
 import { Reveal } from '@/components/ui/Reveal';
-import { WhatsAppLink } from '@/components/ui/WhatsAppLink';
+// import { WhatsAppLink } from '@/components/ui/WhatsAppLink';
 
 const cases = [
   {
@@ -89,7 +89,7 @@ export const Cases = () => {
              <Button variant="outline" onClick={handleWhatsappClick}>
                 Quero resultados assim
              </Button>
-             <WhatsAppLink size="sm" />
+             {/* <WhatsAppLink size="sm" /> */}
         </Reveal>
       </Container>
     </Section>

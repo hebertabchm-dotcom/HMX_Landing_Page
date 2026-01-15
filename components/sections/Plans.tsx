@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Check } from 'lucide-react';
 import { Reveal } from '@/components/ui/Reveal';
-import { WhatsAppLink } from '@/components/ui/WhatsAppLink';
+// import { WhatsAppLink } from '@/components/ui/WhatsAppLink';
 
 const plans = [
   {
@@ -90,9 +90,9 @@ export const Plans = () => {
                 *O investimento varia conforme escopo e verba de mídia.
             </p>
         </Reveal>
-        <Reveal delay={0.45} width="100%" className="mt-3 flex justify-center">
+        {/* <Reveal delay={0.45} width="100%" className="mt-3 flex justify-center">
             <WhatsAppLink size="sm" />
-        </Reveal>
+        </Reveal> */}
       </Container>
     </Section>
   );
