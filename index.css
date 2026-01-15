@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #0F172A;
+    --bg-secondary: #020617;
+    --surface: rgba(255,255,255,0.06);
+    --surface-hover: rgba(255,255,255,0.10);
+
+    --text-primary: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --text-muted: #94A3B8;
+
+    --accent-primary: #0EA5E9;
+    --accent-secondary: #38BDF8;
+    --success: #22C55E;
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 5px;
+    border: 2px solid var(--bg-secondary);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-primary);
+  }
+}
+
+@layer utilities {
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) skewX(-15deg); }
+    100% { transform: translateX(200%) skewX(-15deg); }
+  }
+}
