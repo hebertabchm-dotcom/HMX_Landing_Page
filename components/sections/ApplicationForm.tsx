@@ -19,18 +19,26 @@ type ApplicationFormData = {
   challenge: string;
 };
 
+const INITIAL_FORM_DATA: ApplicationFormData = {
+  name: '',
+  whatsapp: '',
+  company: '',
+  website: '',
+  revenue: '',
+  challenge: '',
+};
+
 export const ApplicationForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [formData, setFormData] = useState<ApplicationFormData>({
-    name: '',
-    whatsapp: '',
-    company: '',
-    website: '',
-    revenue: '',
-    challenge: '',
-  });
+  const [formData, setFormData] = useState<ApplicationFormData>(INITIAL_FORM_DATA);
+
+  const resetForm = () => {
+    setFormData(INITIAL_FORM_DATA);
+    setSubmitError(null);
+    setIsLoading(false);
+  };
 
   const whatsAppMessage = [
     '*Nova aplicação via site*',
@@ -62,6 +70,7 @@ export const ApplicationForm = () => {
 
     try {
       await submitApplicationToN8n(payload);
+      resetForm();
       setIsSubmitted(true);
     } catch {
       setSubmitError('Não foi possível enviar seus dados agora. Tente novamente ou envie pelo WhatsApp.');
@@ -90,7 +99,14 @@ export const ApplicationForm = () => {
               <div className="mb-8 flex justify-center">
                 <WhatsAppLink size="sm" label="Falar agora no WhatsApp" />
               </div>
-              <Button variant="outline" size="lg" onClick={() => setIsSubmitted(false)}>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => {
+                  resetForm();
+                  setIsSubmitted(false);
+                }}
+              >
                 Enviar outra aplicação
               </Button>
             </div>
