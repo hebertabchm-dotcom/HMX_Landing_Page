@@ -3,6 +3,7 @@ import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import hmxLogoV2 from '@/hmx-logo-v2.png';
 
 const navItems = [
   { label: 'Serviços', href: '#services' },
@@ -44,7 +45,7 @@ export const Header = () => {
       <Container className="flex items-center justify-between">
         <a href="#" className="flex items-center transition-all duration-300 hover:brightness-110 active:scale-95">
             <img 
-                src="/hmx-logo-v2.png" 
+                src={hmxLogoV2} 
                 alt="HMX Logo" 
                 className={cn(
                     "w-auto object-contain transition-all duration-300",

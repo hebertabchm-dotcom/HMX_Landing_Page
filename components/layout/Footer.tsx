@@ -1,6 +1,7 @@
 
 import { Container } from '@/components/ui/Container';
 import { Instagram, Linkedin, Facebook, TrendingUp } from 'lucide-react';
+import hmxLogoV2 from '@/hmx-logo-v2.png';
 
 export const Footer = () => {
   return (
@@ -10,7 +11,7 @@ export const Footer = () => {
             <div className="text-center md:text-left flex flex-col items-center md:items-start">
                 <a href="#" className="block mb-4 transition-transform hover:scale-105 duration-200">
                     <img 
-                        src="/hmx-logo-v2.png" 
+                        src={hmxLogoV2} 
                         alt="HMX Logo" 
                         className="h-12 md:h-14 w-auto object-contain drop-shadow-[0_0_12px_rgba(14,165,233,0.2)]" 
                     />
