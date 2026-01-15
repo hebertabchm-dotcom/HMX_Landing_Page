@@ -254,6 +254,7 @@ export const ApplicationForm = () => {
                 id="website"
                 name="website"
                 placeholder="www.suaempresa.com.br"
+                required
                 value={formData.website}
                 onChange={handleChange}
                 autoComplete="url"
@@ -302,6 +303,7 @@ export const ApplicationForm = () => {
                 name="challenge"
                 placeholder="Ex: Leads desqualificados, CPA alto, falta de processo..."
                 rows={4}
+                required
                 value={formData.challenge}
                 onChange={handleChange}
               />
