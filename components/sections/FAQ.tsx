@@ -24,32 +24,28 @@ const faqs = [
   {
     q: 'Como funciona o diagnóstico?',
     a: 'É uma reunião gratuita de 30 minutos onde analisamos sua estrutura atual, identificamos gargalos e apresentamos um plano de ação preliminar.',
-  }
-];
+  },
+] as const;
 
 export const FAQ = () => {
   return (
     <Section id="faq" className="bg-bg-primary">
       <Container className="max-w-3xl">
         <Reveal width="100%">
-             <SectionTitle 
-                subtitle="Tire suas dúvidas" 
-                title="Perguntas Frequentes" 
-                center
-                className="md:mb-16"
-            />
+          <SectionTitle subtitle="Tire suas dúvidas" title="Perguntas Frequentes" center className="md:mb-16" />
         </Reveal>
-       
+
         <Reveal width="100%" delay={0.2}>
-            <Accordion>
-                {faqs.map((item, i) => (
-                    <AccordionItem key={i} title={item.q}>
-                        {item.a}
-                    </AccordionItem>
-                ))}
-            </Accordion>
+          <Accordion>
+            {faqs.map((item) => (
+              <AccordionItem key={item.q} title={item.q}>
+                {item.a}
+              </AccordionItem>
+            ))}
+          </Accordion>
         </Reveal>
       </Container>
     </Section>
   );
 };
+

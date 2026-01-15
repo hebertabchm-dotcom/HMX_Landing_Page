@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { Container } from '@/components/ui/Container';
 import { Section } from '@/components/ui/Section';
 import { SectionTitle } from '@/components/ui/SectionTitle';
@@ -10,10 +10,19 @@ import { WhatsAppLink } from '@/components/ui/WhatsAppLink';
 import { buildWhatsAppUrl } from '@/lib/contact';
 import { Send } from 'lucide-react';
 
+type ApplicationFormData = {
+  name: string;
+  whatsapp: string;
+  company: string;
+  website: string;
+  revenue: string;
+  challenge: string;
+};
+
 export const ApplicationForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ApplicationFormData>({
     name: '',
     whatsapp: '',
     company: '',
@@ -22,19 +31,17 @@ export const ApplicationForm = () => {
     challenge: '',
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-  ) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     setTimeout(() => {
       const message = [
-        '*Nova aplicacao via site*',
+        '*Nova aplicação via site*',
         '',
         `Nome: ${formData.name}`,
         `WhatsApp: ${formData.whatsapp}`,
@@ -58,14 +65,14 @@ export const ApplicationForm = () => {
       >
         <Container className="max-w-2xl text-center">
           <Reveal width="100%">
-            <div className="bg-surface/30 p-12 rounded-3xl border border-accent-primary/20 backdrop-blur-xl shadow-2xl">
+            <div className="bg-surface/30 p-6 sm:p-10 md:p-12 rounded-3xl border border-accent-primary/20 backdrop-blur-xl shadow-2xl">
               <div className="inline-flex items-center justify-center w-20 h-20 bg-success/20 text-success rounded-full mb-6">
                 <Send size={40} className="ml-1" />
               </div>
               <h2 className="text-3xl font-bold text-white mb-4">Aplicação recebida!</h2>
               <p className="text-text-secondary text-lg mb-8 leading-relaxed">
-                Sua solicitação foi enviada para nossa equipe. Se preferir, fale agora no
-                WhatsApp para acelerar o atendimento.
+                Sua solicitação foi enviada para nossa equipe. Se preferir, fale agora no WhatsApp
+                para acelerar o atendimento.
               </p>
               <div className="mb-8 flex justify-center">
                 <WhatsAppLink size="sm" label="Falar agora no WhatsApp" />
@@ -89,9 +96,9 @@ export const ApplicationForm = () => {
             Preencha o formulário abaixo para entendermos o seu momento. Se a sua empresa tiver o
             perfil que buscamos, entraremos em contato em até 24h.
           </p>
-          { <div className="mt-6 flex justify-center">
+          <div className="mt-6 flex justify-center">
             <WhatsAppLink size="sm" label="Falar no WhatsApp" />
-          </div> }
+          </div>
         </Reveal>
 
         <Reveal width="100%" delay={0.2}>
@@ -111,6 +118,7 @@ export const ApplicationForm = () => {
                   required
                   value={formData.name}
                   onChange={handleChange}
+                  autoComplete="name"
                 />
               </div>
               <div className="space-y-2">
@@ -124,6 +132,8 @@ export const ApplicationForm = () => {
                   required
                   value={formData.whatsapp}
                   onChange={handleChange}
+                  inputMode="tel"
+                  autoComplete="tel"
                 />
               </div>
             </div>
@@ -140,6 +150,7 @@ export const ApplicationForm = () => {
                   required
                   value={formData.company}
                   onChange={handleChange}
+                  autoComplete="organization"
                 />
               </div>
               <div className="space-y-2">
@@ -152,6 +163,7 @@ export const ApplicationForm = () => {
                   placeholder="www.suaempresa.com.br"
                   value={formData.website}
                   onChange={handleChange}
+                  autoComplete="url"
                 />
               </div>
             </div>

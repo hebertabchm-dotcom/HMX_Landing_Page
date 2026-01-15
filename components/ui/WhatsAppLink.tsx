@@ -11,7 +11,7 @@ type WhatsAppLinkProps = {
 };
 
 export const WhatsAppLink = ({
-  message = 'Ola! Vim pela landing page da HMX e quero falar com a equipe.',
+  message = 'Olá! Vim pela landing page da HMX e quero falar com a equipe.',
   label = 'Falar no WhatsApp',
   iconOnly = false,
   className,
@@ -46,4 +46,3 @@ export const WhatsAppLink = ({
     </a>
   );
 };
-

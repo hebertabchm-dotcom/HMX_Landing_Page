@@ -10,13 +10,13 @@ interface SectionTitleProps {
 
 export const SectionTitle = ({ title, subtitle, className, center = true }: SectionTitleProps) => {
   return (
-    <div className={cn("mb-12", center && "text-center", className)}>
+    <div className={cn("mb-10 md:mb-12", center && "text-center", className)}>
       {subtitle && (
         <span className="block text-accent-primary font-semibold tracking-wider text-sm uppercase mb-2">
           {subtitle}
         </span>
       )}
-      <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
         {title}
       </h2>
     </div>

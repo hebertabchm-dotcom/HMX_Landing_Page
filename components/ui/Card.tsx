@@ -17,6 +17,9 @@ export const Card = ({ children, className, gradient = false, ...props }: CardPr
       )}
       {...props}
     >
+        {gradient && (
+          <div className="absolute inset-0 bg-[radial-gradient(600px_at_20%_10%,rgba(14,165,233,0.22),transparent_60%)] opacity-60 pointer-events-none" />
+        )}
         {/* Glow Effect */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(400px_at_center,rgba(14,165,233,0.15),transparent)] pointer-events-none" />
         <div className="absolute inset-0 border border-t-[rgba(255,255,255,0.1)] border-l-[rgba(255,255,255,0.05)] rounded-[var(--radius-md)] pointer-events-none" />
