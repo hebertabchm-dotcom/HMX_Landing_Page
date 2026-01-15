@@ -1,5 +1,6 @@
 export type ApplicationWebhookPayload = {
   name: string;
+  email: string;
   whatsapp: string;
   company: string;
   website: string;

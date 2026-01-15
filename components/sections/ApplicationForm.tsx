@@ -12,6 +12,7 @@ import { Send } from 'lucide-react';
 
 type ApplicationFormData = {
   name: string;
+  email: string;
   whatsapp: string;
   company: string;
   website: string;
@@ -21,11 +22,30 @@ type ApplicationFormData = {
 
 const INITIAL_FORM_DATA: ApplicationFormData = {
   name: '',
+  email: '',
   whatsapp: '',
   company: '',
   website: '',
   revenue: '',
   challenge: '',
+};
+
+const formatBrazilianPhoneNumber = (value: string) => {
+  const digits = value.replace(/\D/g, '').slice(0, 11);
+  if (!digits) return '';
+
+  if (digits.length < 3) {
+    return `(${digits}`;
+  }
+
+  const ddd = digits.slice(0, 2);
+  const rest = digits.slice(2);
+
+  if (!rest) return `(${ddd})`;
+  if (rest.length <= 4) return `(${ddd}) ${rest}`;
+  if (rest.length <= 8) return `(${ddd}) ${rest.slice(0, 4)}-${rest.slice(4)}`;
+
+  return `(${ddd}) ${rest.slice(0, 5)}-${rest.slice(5)}`;
 };
 
 export const ApplicationForm = () => {
@@ -45,6 +65,7 @@ export const ApplicationForm = () => {
     '*Nova aplicação via site*',
     '',
     `Nome: ${formData.name}`,
+    `Email: ${formData.email}`,
     `WhatsApp: ${formData.whatsapp}`,
     `Empresa: ${formData.company}`,
     `Site: ${formData.website}`,
@@ -53,7 +74,9 @@ export const ApplicationForm = () => {
   ].join('\n');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    const nextValue = name === 'whatsapp' ? formatBrazilianPhoneNumber(value) : value;
+    setFormData({ ...formData, [name]: nextValue });
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -174,6 +197,24 @@ export const ApplicationForm = () => {
                 />
               </div>
               <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium text-text-secondary">
+                  E-mail
+                </label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="seuemail@empresa.com"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  autoComplete="email"
+                />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-2">
                 <label htmlFor="whatsapp" className="text-sm font-medium text-text-secondary">
                   WhatsApp com DDD
                 </label>
@@ -186,11 +227,9 @@ export const ApplicationForm = () => {
                   onChange={handleChange}
                   inputMode="tel"
                   autoComplete="tel"
+                  maxLength={15}
                 />
               </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label htmlFor="company" className="text-sm font-medium text-text-secondary">
                   Nome da empresa
@@ -205,19 +244,20 @@ export const ApplicationForm = () => {
                   autoComplete="organization"
                 />
               </div>
-              <div className="space-y-2">
-                <label htmlFor="website" className="text-sm font-medium text-text-secondary">
-                  Site / Instagram
-                </label>
-                <Input
-                  id="website"
-                  name="website"
-                  placeholder="www.suaempresa.com.br"
-                  value={formData.website}
-                  onChange={handleChange}
-                  autoComplete="url"
-                />
-              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="website" className="text-sm font-medium text-text-secondary">
+                Site / Instagram
+              </label>
+              <Input
+                id="website"
+                name="website"
+                placeholder="www.suaempresa.com.br"
+                value={formData.website}
+                onChange={handleChange}
+                autoComplete="url"
+              />
             </div>
 
             <div className="space-y-2">
