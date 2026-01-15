@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/Input';
 import { Textarea } from '@/components/ui/Textarea';
 import { Reveal } from '@/components/ui/Reveal';
 import { WhatsAppLink } from '@/components/ui/WhatsAppLink';
-import { buildWhatsAppUrl } from '@/lib/contact';
+import { submitApplicationToN8n, type ApplicationWebhookPayload } from '@/lib/n8n';
 import { Send } from 'lucide-react';
 
 type ApplicationFormData = {
@@ -22,6 +22,7 @@ type ApplicationFormData = {
 export const ApplicationForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [formData, setFormData] = useState<ApplicationFormData>({
     name: '',
     whatsapp: '',
@@ -31,30 +32,42 @@ export const ApplicationForm = () => {
     challenge: '',
   });
 
+  const whatsAppMessage = [
+    '*Nova aplicação via site*',
+    '',
+    `Nome: ${formData.name}`,
+    `WhatsApp: ${formData.whatsapp}`,
+    `Empresa: ${formData.company}`,
+    `Site: ${formData.website}`,
+    `Faturamento: ${formData.revenue}`,
+    `Maior desafio: ${formData.challenge}`,
+  ].join('\n');
+
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setSubmitError(null);
 
-    setTimeout(() => {
-      const message = [
-        '*Nova aplicação via site*',
-        '',
-        `Nome: ${formData.name}`,
-        `WhatsApp: ${formData.whatsapp}`,
-        `Empresa: ${formData.company}`,
-        `Site: ${formData.website}`,
-        `Faturamento: ${formData.revenue}`,
-        `Maior desafio: ${formData.challenge}`,
-      ].join('\n');
+    const payload: ApplicationWebhookPayload = {
+      ...formData,
+      submittedAt: new Date().toISOString(),
+      pageUrl: window.location.href,
+      referrer: document.referrer ?? '',
+      userAgent: navigator.userAgent,
+    };
 
-      window.open(buildWhatsAppUrl(message), '_blank');
-      setIsLoading(false);
+    try {
+      await submitApplicationToN8n(payload);
       setIsSubmitted(true);
-    }, 1200);
+    } catch {
+      setSubmitError('Não foi possível enviar seus dados agora. Tente novamente ou envie pelo WhatsApp.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSubmitted) {
@@ -71,8 +84,8 @@ export const ApplicationForm = () => {
               </div>
               <h2 className="text-3xl font-bold text-white mb-4">Aplicação recebida!</h2>
               <p className="text-text-secondary text-lg mb-8 leading-relaxed">
-                Sua solicitação foi enviada para nossa equipe. Se preferir, fale agora no WhatsApp
-                para acelerar o atendimento.
+                Sua solicitação foi enviada para nossa equipe. Se preferir, fale agora no WhatsApp para
+                acelerar o atendimento.
               </p>
               <div className="mb-8 flex justify-center">
                 <WhatsAppLink size="sm" label="Falar agora no WhatsApp" />
@@ -93,8 +106,8 @@ export const ApplicationForm = () => {
         <Reveal width="100%" className="mb-12">
           <SectionTitle subtitle="Aplicação" title="Agende seu Diagnóstico" center className="mb-4" />
           <p className="text-center text-text-secondary max-w-2xl mx-auto">
-            Preencha o formulário abaixo para entendermos o seu momento. Se a sua empresa tiver o
-            perfil que buscamos, entraremos em contato em até 24h.
+            Preencha o formulário abaixo para entendermos o seu momento. Se a sua empresa tiver o perfil
+            que buscamos, entraremos em contato em até 24h.
           </p>
           <div className="mt-6 flex justify-center">
             <WhatsAppLink size="sm" label="Falar no WhatsApp" />
@@ -106,6 +119,15 @@ export const ApplicationForm = () => {
             onSubmit={handleSubmit}
             className="bg-surface/30 p-6 md:p-10 rounded-2xl border border-white/5 backdrop-blur-sm space-y-6"
           >
+            {submitError && (
+              <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-text-secondary">
+                <p>{submitError}</p>
+                <div className="mt-3 flex justify-center">
+                  <WhatsAppLink size="sm" label="Enviar pelo WhatsApp" message={whatsAppMessage} />
+                </div>
+              </div>
+            )}
+
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium text-text-secondary">
