@@ -3,6 +3,7 @@ import { Section } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
 import { MessageCircle } from 'lucide-react';
 import { Reveal } from '@/components/ui/Reveal';
+import { WhatsAppLink } from '@/components/ui/WhatsAppLink';
 
 export const FinalCTA = () => {
    const handleWhatsappClick = () => {
@@ -39,18 +40,8 @@ export const FinalCTA = () => {
             </Button>
         </Reveal>
 
-        <Reveal width="100%" delay={0.25}>
-          <p className="mt-6 text-sm text-text-muted">
-            WhatsApp:{' '}
-            <a
-              href="https://wa.me/5521969958530"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-success hover:brightness-110 underline underline-offset-4"
-            >
-              21969958530
-            </a>
-          </p>
+        <Reveal width="100%" delay={0.25} className="mt-6 flex justify-center">
+          <WhatsAppLink size="sm" />
         </Reveal>
       </Container>
     </Section>

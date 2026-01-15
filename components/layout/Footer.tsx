@@ -29,7 +29,7 @@ export const Footer = () => {
                     className="mt-4 inline-flex items-center gap-2 text-sm text-text-muted hover:text-success transition-colors"
                 >
                     <MessageCircle size={16} className="text-success" />
-                    WhatsApp: {WHATSAPP_NUMBER}
+                    Atendimento via WhatsApp
                 </a>
             </div>
             

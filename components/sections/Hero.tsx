@@ -5,6 +5,7 @@ import { ArrowRight, BarChart3, TrendingUp, Cpu, Database } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
 import { motion } from 'framer-motion';
 import { Reveal } from '@/components/ui/Reveal';
+import { WhatsAppLink } from '@/components/ui/WhatsAppLink';
 
 export const Hero = () => {
   const handleWhatsappClick = () => {
@@ -59,17 +60,9 @@ export const Hero = () => {
                 Ver Cases
             </Button>
              </div>
-             <p className="text-sm text-text-muted">
-               WhatsApp:{' '}
-               <a
-                 href="https://wa.me/5521969958530"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="text-success hover:brightness-110 underline underline-offset-4"
-               >
-                 21969958530
-               </a>
-             </p>
+             <div className="flex justify-center">
+               <WhatsAppLink size="sm" />
+             </div>
         </Reveal>
 
         <Reveal delay={0.4} width="100%" className='border-t border-white/5 pt-12 mt-4'>

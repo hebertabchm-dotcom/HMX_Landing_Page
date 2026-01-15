@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { ArrowUpRight } from 'lucide-react';
 import { Reveal } from '@/components/ui/Reveal';
+import { WhatsAppLink } from '@/components/ui/WhatsAppLink';
 
 const cases = [
   {
@@ -88,17 +89,7 @@ export const Cases = () => {
              <Button variant="outline" onClick={handleWhatsappClick}>
                 Quero resultados assim
              </Button>
-             <p className="text-sm text-text-muted">
-               WhatsApp:{' '}
-               <a
-                 href="https://wa.me/5521969958530"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="text-success hover:brightness-110 underline underline-offset-4"
-               >
-                 21969958530
-               </a>
-             </p>
+             <WhatsAppLink size="sm" />
         </Reveal>
       </Container>
     </Section>

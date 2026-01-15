@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Check } from 'lucide-react';
 import { Reveal } from '@/components/ui/Reveal';
+import { WhatsAppLink } from '@/components/ui/WhatsAppLink';
 
 const plans = [
   {
@@ -89,18 +90,8 @@ export const Plans = () => {
                 *O investimento varia conforme escopo e verba de mídia.
             </p>
         </Reveal>
-        <Reveal delay={0.45} width="100%">
-            <p className="text-center text-sm text-text-muted mt-3">
-                WhatsApp:{' '}
-                <a
-                  href="https://wa.me/5521969958530"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-success hover:brightness-110 underline underline-offset-4"
-                >
-                  21969958530
-                </a>
-            </p>
+        <Reveal delay={0.45} width="100%" className="mt-3 flex justify-center">
+            <WhatsAppLink size="sm" />
         </Reveal>
       </Container>
     </Section>
