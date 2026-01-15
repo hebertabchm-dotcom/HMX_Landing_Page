@@ -11,6 +11,7 @@ import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { ApplicationForm } from "@/components/sections/ApplicationForm";
 import { Footer } from "@/components/layout/Footer";
+import { WhatsAppFloatingButton } from "@/components/ui/WhatsAppFloatingButton";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <FinalCTA />
       </main>
       <Footer />
+      <WhatsAppFloatingButton />
     </div>
   );
 }

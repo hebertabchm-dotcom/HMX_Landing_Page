@@ -40,7 +40,7 @@ export const ApplicationForm = () => {
                 `🎯 *Maior Desafio:* ${formData.challenge}`
             );
             
-            window.open(`https://wa.me/5521000000000?text=${message}`, '_blank');
+            window.open(`https://wa.me/5521969958530?text=${message}`, '_blank');
             setIsLoading(false);
             setIsSubmitted(true);
         }, 1200);
@@ -58,6 +58,17 @@ export const ApplicationForm = () => {
                             <h2 className="text-3xl font-bold text-white mb-4">Aplicação Recebida!</h2>
                             <p className="text-text-secondary text-lg mb-8 leading-relaxed">
                                 Sua solicitação foi enviada diretamente para nossa equipe. Em breve você receberá um contato no WhatsApp para agendarmos o seu diagnóstico.
+                            </p>
+                            <p className="text-sm text-text-muted mb-8">
+                              Se precisar falar agora:{' '}
+                              <a
+                                href="https://wa.me/5521969958530"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-success hover:brightness-110 underline underline-offset-4"
+                              >
+                                21969958530
+                              </a>
                             </p>
                             <Button variant="outline" size="lg" onClick={() => setIsSubmitted(false)}>
                                 Enviar outra aplicação
@@ -81,6 +92,17 @@ export const ApplicationForm = () => {
             />
             <p className="text-center text-text-secondary max-w-2xl mx-auto">
                 Preencha o formulário abaixo para entendermos o seu momento. Se a sua empresa tiver o perfil que buscamos, entraremos em contato em até 24h.
+            </p>
+            <p className="mt-4 text-center text-sm text-text-muted">
+              Ou fale direto no WhatsApp:{' '}
+              <a
+                href="https://wa.me/5521969958530"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-success hover:brightness-110 underline underline-offset-4"
+              >
+                21969958530
+              </a>
             </p>
         </Reveal>
 

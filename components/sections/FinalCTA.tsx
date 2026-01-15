@@ -9,7 +9,7 @@ export const FinalCTA = () => {
     const message = encodeURIComponent(
       "Olá, quero realizar o diagnóstico gratuito e descobrir onde estou perdendo dinheiro."
     );
-     window.open(`https://wa.me/5521000000000?text=${message}`, '_blank');
+     window.open(`https://wa.me/5521969958530?text=${message}`, '_blank');
   };
 
   return (
@@ -37,6 +37,20 @@ export const FinalCTA = () => {
             <Button size="lg" className="h-16 px-10 text-lg shadow-2xl shadow-accent-primary/20 hover:shadow-accent-primary/50 hover:scale-105 transition-all duration-300" onClick={handleWhatsappClick}>
             <MessageCircle className="mr-3 w-6 h-6" /> Falar com a HMX agora
             </Button>
+        </Reveal>
+
+        <Reveal width="100%" delay={0.25}>
+          <p className="mt-6 text-sm text-text-muted">
+            WhatsApp:{' '}
+            <a
+              href="https://wa.me/5521969958530"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-success hover:brightness-110 underline underline-offset-4"
+            >
+              21969958530
+            </a>
+          </p>
         </Reveal>
       </Container>
     </Section>

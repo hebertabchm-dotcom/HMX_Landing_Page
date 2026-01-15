@@ -30,7 +30,7 @@ export const Header = () => {
     const message = encodeURIComponent(
       "Olá, vim pela landing page da HMX.\nGostaria de agendar um diagnóstico estratégico para entender como posso melhorar minhas vendas e performance."
     );
-    window.open(`https://wa.me/5521000000000?text=${message}`, '_blank');
+    window.open(`https://wa.me/5521969958530?text=${message}`, '_blank');
   };
 
   return (

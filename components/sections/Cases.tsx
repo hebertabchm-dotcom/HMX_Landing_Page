@@ -38,7 +38,7 @@ export const Cases = () => {
     const message = encodeURIComponent(
      "Olá, vim pela landing page da HMX.\nGostaria de agendar um diagnóstico estratégico para entender como posso melhorar minhas vendas e performance."
    );
-    window.open(`https://wa.me/5521000000000?text=${message}`, '_blank');
+    window.open(`https://wa.me/5521969958530?text=${message}`, '_blank');
  };
 
   return (
@@ -84,10 +84,21 @@ export const Cases = () => {
             ))}
         </div>
         
-        <Reveal width="100%" className='flex justify-center'>
+        <Reveal width="100%" className='flex flex-col items-center gap-3'>
              <Button variant="outline" onClick={handleWhatsappClick}>
                 Quero resultados assim
              </Button>
+             <p className="text-sm text-text-muted">
+               WhatsApp:{' '}
+               <a
+                 href="https://wa.me/5521969958530"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="text-success hover:brightness-110 underline underline-offset-4"
+               >
+                 21969958530
+               </a>
+             </p>
         </Reveal>
       </Container>
     </Section>

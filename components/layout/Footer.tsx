@@ -1,9 +1,12 @@
 
 import { Container } from '@/components/ui/Container';
-import { Instagram, Linkedin, Facebook, TrendingUp } from 'lucide-react';
+import { Instagram, Linkedin, Facebook, MessageCircle, TrendingUp } from 'lucide-react';
 import hmxLogoV2 from '@/hmx-logo-v2.png';
+import { WHATSAPP_NUMBER, buildWhatsAppUrl } from '@/lib/contact';
 
 export const Footer = () => {
+  const whatsappHref = buildWhatsAppUrl('Ola! Vim pela landing page da HMX e quero falar com a equipe.');
+
   return (
     <footer className="bg-bg-primary border-t border-white/5 py-12">
       <Container>
@@ -19,9 +22,28 @@ export const Footer = () => {
                 <p className="text-text-muted text-sm max-w-xs leading-relaxed">
                     Transformando dados em lucro com estratégias de performance de elite para negócios ambiciosos.
                 </p>
+                <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 text-sm text-text-muted hover:text-success transition-colors"
+                >
+                    <MessageCircle size={16} className="text-success" />
+                    WhatsApp: {WHATSAPP_NUMBER}
+                </a>
             </div>
             
             <div className="flex items-center gap-4">
+                <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`WhatsApp ${WHATSAPP_NUMBER}`}
+                    title={`WhatsApp: ${WHATSAPP_NUMBER}`}
+                    className="text-text-muted hover:text-success transition-all duration-300 bg-white/5 p-3 rounded-full hover:bg-success/10 hover:shadow-[0_0_15px_rgba(34,197,94,0.2)]"
+                >
+                    <MessageCircle size={20} />
+                </a>
                 {[Instagram, Linkedin, Facebook].map((Icon, i) => (
                     <a 
                         key={i} 

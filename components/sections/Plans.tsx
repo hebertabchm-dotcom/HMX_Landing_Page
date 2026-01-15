@@ -30,7 +30,7 @@ export const Plans = () => {
     const message = encodeURIComponent(
       `Olá, tenho interesse no plano ${planName} da HMX.`
     );
-     window.open(`https://wa.me/5521000000000?text=${message}`, '_blank');
+     window.open(`https://wa.me/5521969958530?text=${message}`, '_blank');
   };
 
   return (
@@ -87,6 +87,19 @@ export const Plans = () => {
         <Reveal delay={0.4} width="100%">
             <p className="text-center text-sm text-text-muted mt-8 opacity-70">
                 *O investimento varia conforme escopo e verba de mídia.
+            </p>
+        </Reveal>
+        <Reveal delay={0.45} width="100%">
+            <p className="text-center text-sm text-text-muted mt-3">
+                WhatsApp:{' '}
+                <a
+                  href="https://wa.me/5521969958530"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-success hover:brightness-110 underline underline-offset-4"
+                >
+                  21969958530
+                </a>
             </p>
         </Reveal>
       </Container>
